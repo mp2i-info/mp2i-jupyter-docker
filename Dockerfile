@@ -24,14 +24,10 @@ RUN opam update
 RUN opam upgrade -y
 RUN eval $(opam env)
 
-# ENV PATH="/eleve/.local/bin:$PATH"
-# RUN mkdir -p /home/opam/.jupyter
 RUN opam install -y merlin jupyter
-# RUN opam install -y jupyter-archimedes
 RUN eval $(opam env)
 RUN opam exec -- ocaml-jupyter-opam-genspec
 RUN jupyter kernelspec install --user --name ocaml-jupyter "$(opam config var share)/jupyter"
-# RUN jupyter kernelspec install --user --name ocaml-jupyter 
 
 RUN pip3 install --user sos
 RUN pip3 install --user sos-notebook
@@ -39,7 +35,6 @@ RUN python3 -m sos_notebook.install
 
 USER root
 RUN conda install -c conda-forge xeus-cling
-USER eleve
-# RUN conda install xeus-cling -c conda-forge
 
+USER eleve
 CMD [ "jupyter", "notebook", "--no-browser", "--ip=*" ]
