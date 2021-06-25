@@ -10,16 +10,15 @@ RUN curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64
     && bash /tmp/miniconda.sh -bfp /usr/local \
     && rm -rf /tmp/miniconda.sh 
 
-RUN pip3 install notebook
-RUN pip3 install sos sos-notebook
+RUN pip3 install notebook sos sos-notebook
+RUN python3 -m sos_notebook.install
+
 RUN conda install -c conda-forge xeus-cling
 ENV PATH /opt/conda/bin:$PATH
 
 RUN useradd -rm -d /home/student -G sudo -s /bin/bash -u 1001 student 
 USER student
 WORKDIR /home/student
-
-RUN python3 -m sos_notebook.install
 
 RUN opam init -a -y --disable-sandboxing \
     && opam update \
