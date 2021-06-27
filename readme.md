@@ -7,7 +7,7 @@ This is a docker image to run a Jupyter notebook with OCaml, C++, and Python ker
 ## Usage
 
 ```
-docker run -p 8888:8888 mp2i
+docker run -p 8888:8888 qfortier/mp2i
 ```
 
 Then open the given link.  
