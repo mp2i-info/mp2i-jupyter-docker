@@ -9,7 +9,8 @@ RUN apt-get update && apt install -y software-properties-common && add-apt-repos
     && rm -rf /tmp/miniconda.sh \
     && pip3 install notebook sos-notebook \
     && python3 -m sos_notebook.install \
-    && conda install -c conda-forge xeus-cling
+    && conda install -c conda-forge xeus-cling \
+    && jupyter kernelspec remove -f xcpp11 xcpp14
 
 RUN useradd -rm -d /home/student -G sudo -s /bin/bash student 
 USER student
