@@ -1,10 +1,13 @@
+image = qfortier/mp2i
+version = jupyterlab
+
 build:
-	docker build -t qfortier/mp2i:jupyterlab .
+	docker build -t $(image):$(version) .
 run:
-	docker run -p 8888:8888 qfortier/mp2i:jupyterlab
+	docker run -p 8888:8888 $(image):$(version)
 prune:
 	docker image prune
 push:
-	docker push qfortier/mp2i:jupyterlab
+	docker push $(image):$(version)
 rm:
 	docker rmi -f $(docker images -a -q)
