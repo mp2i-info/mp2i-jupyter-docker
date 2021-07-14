@@ -9,7 +9,7 @@ RUN apt-get update && apt install -y software-properties-common && add-apt-repos
     && rm -rf /tmp/miniconda.sh \
     && pip3 install notebook sos-notebook \
     && python3 -m sos_notebook.install \
-    && conda install -c conda-forge xeus-cling \
+    && conda install -c conda-forge jupyterlab-sos xeus-cling \
     && jupyter kernelspec remove -f xcpp11 xcpp14
 
 RUN useradd -rm -d /home/student -G sudo -s /bin/bash student 
@@ -24,4 +24,4 @@ RUN opam init -a -y --disable-sandboxing \
     && opam exec -- ocaml-jupyter-opam-genspec \
     && jupyter kernelspec install --user --name ocaml-jupyter "$(opam config var share)/jupyter"
 
-CMD [ "jupyter", "notebook", "--no-browser", "--ip=*" ]
+CMD [ "jupyter-lab", "--no-browser", "--ip=*" ]
