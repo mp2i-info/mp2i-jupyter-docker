@@ -24,4 +24,5 @@ RUN opam init -a -y --disable-sandboxing \
     && opam exec -- ocaml-jupyter-opam-genspec \
     && jupyter kernelspec install --user --name ocaml-jupyter "$(opam config var share)/jupyter"
 
-CMD [ "jupyter-lab", "--no-browser", "--ip=*" ]
+CMD [ "jupyter-lab", "--no-browser", "--ip=*" ] 
+# "--collaborative", 
