@@ -1,6 +1,6 @@
-image = qfortier/mp2i
-version = jupyterlab
-volume = mp2i-vol
+image=qfortier/mp2i
+version=jupyterlab
+volume=mp2i-vol
 
 build:
 	docker build -t $(image):$(version) .
@@ -8,8 +8,8 @@ build:
 volume:
 	docker volume create $(volume)
 
-run:
-	docker run -p 8888:8888 --mount source=$(volume),target=/home/student $(image):$(version)
+run: ## --mount source=$(volume),target=/home/student
+	docker run -p 8889:8888 $(image):$(version)
 
 prune:
 	docker image prune

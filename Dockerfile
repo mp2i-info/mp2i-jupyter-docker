@@ -2,15 +2,14 @@ FROM ubuntu
 
 RUN apt-get update && apt install -y software-properties-common && add-apt-repository ppa:avsm/ppa \
     && apt install -y --no-install-recommends zlib1g-dev libffi-dev libgmp-dev libzmq5-dev pkg-config \
-    build-essential curl sudo  ocaml opam python3-pip \
+    build-essential curl sudo ocaml opam python3-pip \
     && rm -rf /var/lib/apt/lists/ \
     && curl -sSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
     && bash /tmp/miniconda.sh -bfp /usr/local \
     && rm -rf /tmp/miniconda.sh \
     && pip3 install notebook sos-notebook \
     && python3 -m sos_notebook.install \
-    && conda install -c conda-forge jupyterlab-sos xeus-cling \
-    && jupyter kernelspec remove -f xcpp11 xcpp14
+    && conda install -c conda-forge jupyterlab-sos xeus-cling
 
 RUN useradd -rm -d /home/student -G sudo -s /bin/bash student 
 USER student
