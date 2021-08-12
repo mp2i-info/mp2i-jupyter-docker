@@ -1,20 +1,16 @@
 image=qfortier/mp2i
-version=jupyterlab
-volume=mp2i-vol
+version=1.0.0
 
 build:
 	docker build -t $(image):$(version) .
 
-volume:
-	docker volume create $(volume)
-
-run: ## --mount source=$(volume),target=/home/student
-	docker run -p 8889:8888 $(image):$(version)
+run:
+	docker run -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes -v $(pwd):/home/jovyan/work $(image):$(version)
 
 prune:
 	docker image prune
 
-push:
+push: build
 	docker push $(image):$(version)
 
 rm:
