@@ -18,6 +18,8 @@ RUN python3 -m sos_notebook.install && \
 RUN conda install -c conda-forge jupyterlab-sos xeus-cling && \
     fix-permissions "${CONDA_DIR}" "${HOME}"
 
+ENV OPAMROOT=${CONDA_DIR}/.opam
+
 RUN opam init -a -y --disable-sandboxing && \
     opam update && \
     opam upgrade -y && \
