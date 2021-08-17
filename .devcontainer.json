@@ -1,5 +1,0 @@
-{
-    "image": "qfortier/mp2i",
-    "extensions": ["ocamllabs.ocaml-platform", "ckolkman.vscode-postgres", "ms-vsliveshare.vsliveshare"],
-    "forwardPorts": [8888]
-}
