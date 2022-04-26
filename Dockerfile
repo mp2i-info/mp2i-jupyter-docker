@@ -16,9 +16,15 @@ RUN conda install -c conda-forge nbgitpuller xeus-cling && \
     opam update && \
     opam upgrade -y && \
     eval $(opam env) && \
-    opam install -y jupyter cairo2 graphics archimedes jupyter-archimedes && \
+    opam install -y jupyter cairo2 graphics archimedes jupyter-archimedes ppx_inline_test batteries core && \
     opam exec -- ocaml-jupyter-opam-genspec && \
     jupyter kernelspec install --user --name ocaml-jupyter "$(opam var share)/jupyter" && \
     rsync -a "${HOME}/.local/share/jupyter/kernels" "${CONDA_DIR}/share/jupyter"
+
+RUN git clone https://github.com/fortierq/mp2i-library.git && \
+    opam install -y ./mp2i-library && \
+    echo '#use "topfind";;' >> ~/.ocamlinit && \
+    echo '#require "mp2i";;' >> ~/.ocamlinit && \
+    echo 'open Mp2i;;' >> ~/.ocamlinit
 
 WORKDIR ${HOME}
